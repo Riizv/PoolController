@@ -33,26 +33,21 @@ begin
 
     process
     begin
-        wait for 10 ns;
-        clk <= not clk;
-    end process;
-
-    stim_proc: process
-    begin
-        reset <= '1';
-        wait for 10 ns;
-        reset <= '0';
-
-        wait for clk_peroid*10;
+        clk <= '0';
+        wait for 5 ns;
+        clk <= '1';
+        wait for 5 ns;
     end process;
     
-    -- process 
-    -- begin 
-    -- for i in 0 to 3 loop
-    --     level_sensor <= i;
-    --     wait for 10 ns;
-    -- end loop;
-    --     end process;
-
-
+    process 
+     begin 
+         reset <= '1';
+         wait for 10 ns;
+         reset <='0';
+            
+     for i in 0 to 3 loop
+         level_sensor <= i;
+         wait for 10 ns;
+     end loop;
+         end process;
 end; 
