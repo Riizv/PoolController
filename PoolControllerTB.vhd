@@ -1,6 +1,7 @@
 library ieee; 
 
 use ieee.std_logic_1164.all; 
+use ieee.numeric_std.all;
 
 entity PoolControllerTB is 
 end entity PoolControllerTB; 
@@ -21,6 +22,7 @@ end component;
     signal level_sensor : std_logic_vector(1 downto 0) := "00"; 
     signal pump : std_logic; 
     constant clk_peroid: time:= 10 ns;
+
 begin 
 
     uut : PoolController
@@ -39,15 +41,19 @@ begin
         wait for 5 ns;
     end process;
     
+    -- process(clk, reset)
+    -- begin
+    --     if(reset='1') then
+    --         level_sensor <= "00";
+    --     elsif falling_edge(clk) then
+    --             level_sensor <= level_sensor + '1'; 
+    --     end if;
+    -- end process;
+
     process 
      begin 
          reset <= '1';
          wait for 10 ns;
          reset <='0';
-            
-     for i in 0 to 3 loop
-         level_sensor <= i;
-         wait for 10 ns;
-     end loop;
          end process;
 end; 
